@@ -6,6 +6,7 @@ published: true
 ---
 
 
+
 ### TL;DR
 
 Enable Erlang inter-node communication in a firewalled environment without additional configuration other than opening up the port that EPMD occupies.
@@ -31,6 +32,4 @@ Suppose node1@host1 wants to connect to node2@host2, he mechanism works this way
 - EPMD sends a handover request command to node2 (through it's heartbeat connection), node2 creates a unique Unix domain socket and sends back it's name to EPMD
 - EPMD receives the Unix domain socket name, connects to it and sends the socket descriptor associated with c1 through it, from this point on EPMD no longer cares about connection c1 since it's effectively handed over to node2, so it simply closes it.
 - node2 receives c1 through the Unix domain socket, from this point on c1 is am inter-node TCP connection between node1 and node2, node2 sends back a reply with a success status through c1
-- both node1 and node2 use connection c1 as the intern-node connection exactly as up until now
-
-
+- both node1 and node2 use connection c1 as the inter-node connection in exactly the same manner as up until now
