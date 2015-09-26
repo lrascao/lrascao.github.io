@@ -37,10 +37,13 @@ Suppose node1@host1 wants to connect to node2@host2, the mechanism works this wa
 
 ### The nitty-gritty
 
-All code is available on github on a OTP fork (https://github.com/lrascao/otp/tree/feature/tcp_connection_handover). The main blocks for this are:
+All code is available on github on a OTP fork (https://github.com/lrascao/otp/tree/feature/tcp_connection_handover). A pull request to the OTP is also pending, i'm not expecting it to be merged as it is  a radical change from the current architecture, this is meant mainly as an learning exercise of the Erlang VM. The main blocks for the feature are:
 - The passfd driver
 - EPMD handover command
 - Node aliases in the Erlang VM
+
+### Passfd Driver
+
 
 
 
