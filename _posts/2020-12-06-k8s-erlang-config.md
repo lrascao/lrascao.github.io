@@ -18,7 +18,8 @@ in k8s.
 
 Configuration in Erlang is hard, you have to know quite a bit of Erlang syntax to write it and it's easy to get confused with all the lists and the tuples. That's why [`basho`](https://github.com/basho) developers (of Riak fame) came up with
 [`cuttlefish`](https://github.com/Kyorai/cuttlefish), a tool that deals with all the complexity of the Erlang configuration by exposing to the end user a simple `sysctl.conf` syntax style file.
-An Erlang developer does the hard work of exposing this simple interface to the non-Erlang user instead of both having to share the complexity.
+An Erlang developer does the hard work of exposing this simple interface to the non-Erlang user, instead of both having to share the complexity, I've written a [rebar3 plugin](https://github.com/lrascao/rebar3_scuttler)
+that proposes to ease this workflow with a (hopefully) clean interface.
 
 Before jumping into too much detail of how to achieve this, let me show you the end result. The following is a partial kubernetes deployment yaml file for a [simple Erlang web service](https://github.com/lrascao/simple_web_server) listening for requests
 on port `8585` (full version at the [repo](https://github.com/lrascao/simple_web_server/blob/develop/k8s/simple-web-service/deployment.yaml)).
@@ -340,8 +341,7 @@ data:
 
 ### [Putting it all together](#putting-it-all-together)
 
-So it's now time for you, Erlang developer, to make the previous interaction possible in your application. I've written a [rebar3 plugin](https://github.com/lrascao/rebar3_scuttler)
-that proposes to ease this workflow, the steps nededed do make this happen are better explained in the [project's README](https://github.com/lrascao/rebar3_scuttler/blob/develop/README.md),
+So it's now time for you, Erlang developer, to make the previous interaction possible in your application. Now let's make use of the [rebar3_scuttler](https://github.com/lrascao/rebar3_scuttler) plugin, the steps nededed do make this happen are better explained in the [project's README](https://github.com/lrascao/rebar3_scuttler/blob/develop/README.md),
 here i'll just highlight some of the relevant details related to the `simple_web_server` project.
 
 Below is a `rebar.config` snippet where we're informing the plugin of where to read the non-Erlang configuration from, if no file is present at the start, one is generated out of the defaults you declared in the `.schema` file(s).
