@@ -294,8 +294,7 @@ k8s_reverse_lookup(SrvRecord) ->
     % 2. ask for SRV records backing up the headless service, this will gives us back, all pod FQDN
     %    names under the headless service subdomain
     {ok, #dns_rec{anlist = Answers}} = inet_res:resolve(SrvRecordFQDN, in, srv),
-    % 3. go through each of these records and replace the headless service DNS name component for the
-    %    deployment name
+    % 3. go through each of these records and extract the host
     Hosts =
         lists:map(fun(#dns_rr{type = srv,
                               class = in,
